@@ -1,6 +1,9 @@
 package org.vsoft.vspetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import org.vsoft.vspetclinic.model.Pet;
+import org.vsoft.vspetclinic.services.PetService;
 
-public class PetServiceMap extends AbstractMapService<Pet> {
+@Service
+public class PetServiceMap extends AbstractMapService<Pet> implements PetService {
 }
