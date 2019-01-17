@@ -3,11 +3,14 @@ package org.vsoft.vspetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.vsoft.vspetclinic.model.Owner;
+import org.vsoft.vspetclinic.model.Pet;
 import org.vsoft.vspetclinic.model.PetType;
 import org.vsoft.vspetclinic.model.Vet;
 import org.vsoft.vspetclinic.services.OwnerService;
 import org.vsoft.vspetclinic.services.PetTypeService;
 import org.vsoft.vspetclinic.services.VetService;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -34,24 +37,36 @@ public class DataLoader implements CommandLineRunner {
 
 
         Owner owner1 = new Owner();
-//        owner1.setId(1L);
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
-        ownerService.save(owner1);
+        owner1.setAddress("123");
+        owner1.setCity("Toronto");
+        owner1.setPhone("32453647586");
+        Pet pet1 = new Pet();
+        pet1.setPetType(dog);
+        pet1.setBirthDay(LocalDate.now());
+        pet1.setName("Zaza");
+        owner1.addPet(pet1);
+        owner1 = ownerService.save(owner1);
         Owner owner2 = new Owner();
-//        owner2.setId(2L);
         owner2.setFirstName("Fiona");
         owner2.setLastName("Glenanne");
-        ownerService.save(owner2);
+        owner2.setAddress("345");
+        owner2.setCity("Toronto");
+        owner2.setPhone("34567");
+        Pet pet2 = new Pet();
+        pet2.setPetType(cat);
+        pet2.setBirthDay(LocalDate.now());
+        pet2.setName("Beza");
+        owner2.addPet(pet2);
+        owner2 = ownerService.save(owner2);
         System.out.println("Loaded owners...");
 
         Vet vet1 = new Vet();
-//        vet1.setId(1L);
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
         vetService.save(vet1);
         Vet vet2 = new Vet();
-//        vet2.setId(2L);
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
         vetService.save(vet2);
