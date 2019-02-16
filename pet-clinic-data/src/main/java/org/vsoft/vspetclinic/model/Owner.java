@@ -1,17 +1,29 @@
 package org.vsoft.vspetclinic.model;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "owners")
 @Getter
 @Setter
+@NoArgsConstructor
+@Entity
+@Table(name = "owners")
 public class Owner extends Person {
+
+    @Builder
+    public Owner(Long id, String firstName, String lastName, String address, String city, String phone, Set<Pet> pets) {
+        super(id, firstName, lastName);
+        this.address = address;
+        this.city = city;
+        this.phone = phone;
+        this.pets = pets;
+    }
 
     @Column(name = "address")
     private String address;
@@ -25,7 +37,7 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
-    public void addPet(Pet pet){
+    public void addPet(Pet pet) {
         pet.setOwner(this);
         pets.add(pet);
     }
