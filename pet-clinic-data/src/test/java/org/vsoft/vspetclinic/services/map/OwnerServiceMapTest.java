@@ -25,7 +25,7 @@ class OwnerServiceMapTest {
     void setUp() {
 //        MockitoAnnotations.initMocks(this);
         ownerServiceMap = new OwnerServiceMap(new PetTypeMapService(), new PetServiceMap());
-        ownerServiceMap.save(Owner.builder().id(1L).lastName(lastName).build());
+        ownerServiceMap.save(Owner.builder().id(ownerId).lastName(lastName).build());
     }
 
     @Test
